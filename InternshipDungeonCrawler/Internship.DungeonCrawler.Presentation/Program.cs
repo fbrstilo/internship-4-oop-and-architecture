@@ -1,9 +1,6 @@
 ﻿using System;
-using InternshipDungeonCrawler.Data.Models.Player;
-using InternshipDungeonCrawler.Data.Models;
 using InternshipDungeonCrawler.Data;
 using InternshipDungeonCrawler.Domain;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace InternshipDungeonCrawler.Presentation
 {

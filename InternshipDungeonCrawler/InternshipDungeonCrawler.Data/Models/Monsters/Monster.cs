@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using InternshipDungeonCrawler.Data;
 
 namespace InternshipDungeonCrawler.Data.Models.Monsters
 {

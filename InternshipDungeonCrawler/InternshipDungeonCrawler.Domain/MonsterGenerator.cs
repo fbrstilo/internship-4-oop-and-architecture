@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using InternshipDungeonCrawler.Data;
+﻿using InternshipDungeonCrawler.Data;
 
 namespace InternshipDungeonCrawler.Domain
 {
@@ -24,7 +21,7 @@ namespace InternshipDungeonCrawler.Domain
             }
             if(DataStore.ConfuseUsed == true)
             {
-                DataStore.Enemy.Health = DataStore.Enemy.Health * Randomiser.Monster();
+                DataStore.Enemy.Health = Randomiser.Health(DataStore.Enemy.Health);
             }
         }
         public static void Goblin()

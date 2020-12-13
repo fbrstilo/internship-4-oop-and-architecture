@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace InternshipDungeonCrawler.Domain
 {
@@ -15,6 +13,11 @@ namespace InternshipDungeonCrawler.Domain
         {
             var rnd = new Random();
             return rnd.Next(10);
+        }
+        public static int Health(int maxHp)
+        {
+            var rnd = new Random();
+            return rnd.Next(1, maxHp);
         }
     }
 }

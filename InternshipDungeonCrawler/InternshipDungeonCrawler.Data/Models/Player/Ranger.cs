@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace InternshipDungeonCrawler.Data.Models.Player
 {
     public class Ranger : Player

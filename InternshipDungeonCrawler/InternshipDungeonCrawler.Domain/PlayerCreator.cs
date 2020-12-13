@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using InternshipDungeonCrawler.Data;
+﻿using InternshipDungeonCrawler.Data;
 using InternshipDungeonCrawler.Data.Models.Player;
 
 namespace InternshipDungeonCrawler.Domain
