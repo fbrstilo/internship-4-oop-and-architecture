@@ -1,6 +1,8 @@
 ﻿using System;
 using InternshipDungeonCrawler.Data.Models.Player;
 using InternshipDungeonCrawler.Data.Models;
+using InternshipDungeonCrawler.Data;
+using InternshipDungeonCrawler.Domain;
 
 namespace InternshipDungeonCrawler.Presentation
 {
@@ -17,7 +19,8 @@ namespace InternshipDungeonCrawler.Presentation
             }
             while (true)
             {
-                Console.WriteLine("Choose your hero type:\t\t(0 to quit)\n" +
+                Console.WriteLine("Welcome, " + heroName +
+                    "\nChoose your hero type:\t\t(0 to quit)\n" +
                     "\n1 - Warrior:\n" +
                     "\t-has lots of HP\n" +
                     "\t-does little damage\n" +
@@ -30,39 +33,27 @@ namespace InternshipDungeonCrawler.Presentation
                     "\n3 - Ranger:\n" +
                     "\t-moderate HP\n" +
                     "\t-moderate damage\n" +
-                    "\t-each attack has a chance to CRIT (deal double damage) or STUN (attack again without playing rock/paper/scissors) an enemy\n");
+                    "\t-each attack has a chance to CRIT or STUN an enemy\n");
                 switch (Console.ReadLine())
                 {
                     case "0":
                         Environment.Exit(0);
                         break;
                     case "1":
-                        var player = new Warrior
-                        {
-                            Name = heroName,
-                            MaxHealth = 200,
-                            CurrentHealth = 200,
-                            Damage = 10
-                        };
+                        PlayerCreator.WarriorCreator(heroName);
                         break;
                     case "2":
-                        var player = new Mage
-                        {
-                            Name = heroName,
-                            MaxHealth = 100,
-                            CurrentHealth = 100,
-                            Damage = 20
-                        };
+                        PlayerCreator.MageCreator(heroName);
                         break;
                     case "3":
-
+                        PlayerCreator.RangerCreator(heroName);
                         break;
                     default:
+                        Console.Clear();
                         Console.WriteLine("Wrong input. Please enter 0, 1, 2, or 3.");
                         break;
                 }
             }
-
         }
     }
 }

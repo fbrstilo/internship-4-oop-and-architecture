@@ -5,18 +5,18 @@ using InternshipDungeonCrawler.Data;
 using InternshipDungeonCrawler.Data.Models;
 
 namespace InternshipDungeonCrawler.Domain
-{
+{/*
     public class Leveling
     {
-        public Tuple<int,int> LevelProgress(int gainedxp,int currentxp)
+        public int LevelProgress(int gainedxp)
         {
-            var levelupThreshold = 10 * DataStore.EncounterCount;
-            while(currentxp + gainedxp >= levelupThreshold)
+            var levelupThreshold = 10 * player.CurrentLevel;
+            while(player.ExperiencePoints + gainedxp >= levelupThreshold)
             {
-                Player.CurrentLevel += 1;
-                currentxp -= levelupThreshold;
+                player.CurrentLevel += 1;
+                player.ExperiencePoints -= levelupThreshold;
             }
-            return new Tuple<int, int>(currentlevel, currentxp);
+            return levelupThreshold - player.ExperiencePoints;
         }
-    }
+    }*/
 }
