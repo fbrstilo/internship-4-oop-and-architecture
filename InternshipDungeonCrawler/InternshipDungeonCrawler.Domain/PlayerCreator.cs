@@ -8,9 +8,9 @@ namespace InternshipDungeonCrawler.Domain
 {
     public static class PlayerCreator
     {
-        public static void WarriorCreator(string name)
+        public static void Warrior(string name)
         {
-            DataStore.player = new Warrior
+            DataStore.Player = new Warrior
             {
                 Name = name,
                 MaxHealth = 200,
@@ -19,9 +19,9 @@ namespace InternshipDungeonCrawler.Domain
             };
             
         }
-        public static void MageCreator(string name)
+        public static void Mage(string name)
         {
-            DataStore.player = new Mage
+            DataStore.Player = new Mage
             {
                 Name = name,
                 MaxHealth = 200,
@@ -29,9 +29,9 @@ namespace InternshipDungeonCrawler.Domain
                 Damage = 10
             };
         }
-        public static void RangerCreator(string name)
+        public static void Ranger(string name)
         {
-            DataStore.player = new Ranger
+            DataStore.Player = new Ranger
             {
                 Name = name,
                 MaxHealth = 200,

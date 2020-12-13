@@ -3,12 +3,13 @@ using InternshipDungeonCrawler.Data.Models.Player;
 using InternshipDungeonCrawler.Data.Models;
 using InternshipDungeonCrawler.Data;
 using InternshipDungeonCrawler.Domain;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace InternshipDungeonCrawler.Presentation
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Heroji Moci i Magije (TM)");
             Console.WriteLine("\nChoose your hero name:\t\t(0 to quit)");
@@ -17,7 +18,8 @@ namespace InternshipDungeonCrawler.Presentation
             {
                 Environment.Exit(0);
             }
-            while (true)
+            var done = false;
+            while (!done)
             {
                 Console.WriteLine("Welcome, " + heroName +
                     "\nChoose your hero type:\t\t(0 to quit)\n" +
@@ -38,20 +40,51 @@ namespace InternshipDungeonCrawler.Presentation
                 {
                     case "0":
                         Environment.Exit(0);
+                        done = true;
                         break;
                     case "1":
-                        PlayerCreator.WarriorCreator(heroName);
+                        PlayerCreator.Warrior(heroName);
+                        done = true;
                         break;
                     case "2":
-                        PlayerCreator.MageCreator(heroName);
+                        PlayerCreator.Mage(heroName);
+                        done = true;
                         break;
                     case "3":
-                        PlayerCreator.RangerCreator(heroName);
+                        PlayerCreator.Ranger(heroName);
+                        done = true;
                         break;
                     default:
                         Console.Clear();
-                        Console.WriteLine("Wrong input. Please enter 0, 1, 2, or 3.");
+                        Console.WriteLine("Wrong input. Please enter 0, 1, 2, or 3.\n");
                         break;
+                }
+            }
+            while (true)
+            {
+                if (DataStore.EncounterCount < 10)
+                {
+
+                }
+                else
+                {
+                    Console.WriteLine("You go forwards and see a familiar face. It's Toad!");
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("Toad: Thank you " + heroName + "!\n" +
+                        "But our princess is in another castle!");
+                    Console.ResetColor();
+                    Console.WriteLine("\n\nWould you like to play again?" +
+                        "\n0 to quit, any other key to play again:");
+                    var playAgain = Console.ReadLine();
+                    if (playAgain == "0")
+                    {
+                        Main();
+                        return;
+                    }
+                    else
+                    {
+                        Environment.Exit(0);
+                    }
                 }
             }
         }
