@@ -93,18 +93,15 @@ namespace InternshipDungeonCrawler.Domain
                         break;
                 }
             }
-            
+            Console.Clear();
+            Console.WriteLine("You start out on a new adventure. Your mission sounds simple enough: Save the princess or, something..." +
+                "\nAnyway, there are various enemies in your way that you need to defeat before you can save the day." +
+                "\nGo ahead, be a hero!" +
+                "\nPress any key to continue");
+            Console.ReadKey();
             while (true)
             {
-                if (DataStore.EncounterCount < 10)
-                {
-
-                }
-                else
-                {
-                    EndScreen(heroName);
-                    return;
-                }
+                Encounter.NewEncounter();
             }
         }
 

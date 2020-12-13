@@ -13,11 +13,16 @@ namespace InternshipDungeonCrawler.Domain
         {
             while (DataStore.EncounterCount <= 10)
             {
+                Console.Clear();
                 MonsterGenerator.Spawn();
-                Console.WriteLine("You walk for a bit and encounter a " + DataStore.Enemy.Name);
+                Console.WriteLine("You walk for a bit and encounter a " + DataStore.Enemy.Name
+                    + ". They seem eager to fight you.");
+                Console.ReadKey();
                 while(DataStore.Player.Health>0 && DataStore.Enemy.Health > 0)
                 {
                     RockPaperScissorsCombat();
+                    DataStore.Player.ToString();
+                    DataStore.Enemy.ToString();
                 }
                 if (DataStore.Player.Health <= 0)
                 {
@@ -56,7 +61,50 @@ namespace InternshipDungeonCrawler.Domain
         }
         private static void RockPaperScissorsCombat()
         {
-
+            var MonsterCombatChoice = (RockPaperScissorsEnum)Randomiser.AttackRnd();
+            Console.WriteLine("Choose your attack:");
+            for(int i = 0; i < 3; i++)
+            {
+                Console.WriteLine(i+1 + " - " + (RockPaperScissorsEnum)i);
+            }
+            var PlayerCombatChoice = (RockPaperScissorsEnum)0;
+            var done = false;
+            while (!done)
+            {
+                var userInput = Console.ReadLine();
+                switch (userInput)
+                {
+                    case "1":
+                        done = true;
+                        break;
+                    case "2":
+                        PlayerCombatChoice = (RockPaperScissorsEnum)1;
+                        done = true;
+                        break;
+                    case "3":
+                        PlayerCombatChoice = (RockPaperScissorsEnum)2;
+                        done = true;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid input. Please try again.");
+                        break;
+                }
+            }
+            if ((PlayerCombatChoice == RockPaperScissorsEnum.Rock && MonsterCombatChoice == RockPaperScissorsEnum.Scissors)||(PlayerCombatChoice == RockPaperScissorsEnum.Scissors && MonsterCombatChoice == RockPaperScissorsEnum.Paper)||(PlayerCombatChoice == RockPaperScissorsEnum.Paper && MonsterCombatChoice == RockPaperScissorsEnum.Rock))
+            {
+                DataStore.Player.Attack();
+                Console.ReadKey();
+            }
+            else if ((PlayerCombatChoice == RockPaperScissorsEnum.Rock && MonsterCombatChoice == RockPaperScissorsEnum.Paper) || (PlayerCombatChoice == RockPaperScissorsEnum.Scissors && MonsterCombatChoice == RockPaperScissorsEnum.Rock) || (PlayerCombatChoice == RockPaperScissorsEnum.Paper && MonsterCombatChoice == RockPaperScissorsEnum.Scissors))
+            {
+                DataStore.Enemy.Attack(Randomiser.AttackRnd());
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("A tie! Press any key to continue to next round.");
+                Console.ReadKey();
+            }
         }
     }
 }

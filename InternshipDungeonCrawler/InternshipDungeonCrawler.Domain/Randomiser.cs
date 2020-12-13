@@ -12,7 +12,7 @@ namespace InternshipDungeonCrawler.Domain
         public static int AttackRnd()
         {
             var rnd = new Random();
-            return rnd.Next(10);
+            return rnd.Next(0, 3);
         }
         public static int Health(int maxHp)
         {
