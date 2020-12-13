@@ -76,7 +76,7 @@ namespace InternshipDungeonCrawler.Domain
                             if (int.TryParse(userInputHp, out int health))
                             {
                                 DataStore.Player.MaxHealth = health;
-                                DataStore.Player.CurrentHealth = health;
+                                DataStore.Player.Health = health;
                                 settingsChosen = true;
                                 Console.WriteLine("Your maximum health value has been changed to " + DataStore.Player.MaxHealth);
                             }
@@ -128,7 +128,7 @@ namespace InternshipDungeonCrawler.Domain
             }
         }
 
-        private static void DeathScreen()
+        public static void DeathScreen()
         {
             Console.WriteLine("A brave hero named " + DataStore.Player.Name +  "died today on his conquest to save the world, or something." +
                 "\nHis body has perished, but his memory will remain." +

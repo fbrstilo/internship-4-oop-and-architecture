@@ -14,26 +14,33 @@ namespace InternshipDungeonCrawler.Data.Models.Player
         public int CritChance { get; set; } = 1;
         public int StunChance { get; set; } = 1;
 
-        public override void Attack(Player Player, Monster Enemy)
+
+        public override void NextLevel()
+        {
+            base.NextLevel();
+            (DataStore.Player as Ranger).StunChance++;
+            (DataStore.Player as Ranger).CritChance++;
+        }
+        public override void Attack()
         {
             var random = new Random();
             if (random.Next(1, 11) <= CritChance)
             {
-                Enemy.Health -= 3 * Player.Damage;
+                DataStore.Enemy.Health -= 3 * DataStore.Player.Damage;
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine("CRITICAL HIT!");
                 Console.ResetColor();
-                Console.WriteLine("You attacked the " + Enemy.Name + " and caused " + 3 * Player.Damage + " damage points");
+                Console.WriteLine("You attacked the " + DataStore.Enemy.Name + " and caused " + 3 * DataStore.Player.Damage + " damage points");
             }
             if (random.Next(1, 11) <= StunChance)
             {
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine("YOU STUNNED THE MONSTER!");
                 Console.ResetColor();
-                base.Attack(Player, Enemy);
+                base.Attack();
                 Console.WriteLine("Press any key to attack again:");
                 Console.ReadKey();
-                Attack(Player, Enemy);
+                Attack();
             }
         }
 

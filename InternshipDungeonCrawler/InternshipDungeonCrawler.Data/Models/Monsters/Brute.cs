@@ -23,7 +23,7 @@ namespace InternshipDungeonCrawler.Data.Models.Monsters
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("The monster used CHARGE. You lost " + DamagePerAttack * 15 / 100 + " health.");
                 Console.ResetColor();
-                DataStore.Player.CurrentHealth = DataStore.Player.CurrentHealth * 85/100;
+                DataStore.Player.Health = DataStore.Player.Health * 85/100;
             }
         }
     }

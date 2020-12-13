@@ -11,7 +11,7 @@ namespace InternshipDungeonCrawler.Domain
             {
                 Name = name,
                 MaxHealth = 200,
-                CurrentHealth = 200,
+                Health = 200,
                 Damage = 10
             };
             
@@ -22,7 +22,7 @@ namespace InternshipDungeonCrawler.Domain
             {
                 Name = name,
                 MaxHealth = 200,
-                CurrentHealth = 200,
+                Health = 200,
                 Damage = 10
             };
         }
@@ -32,7 +32,7 @@ namespace InternshipDungeonCrawler.Domain
             {
                 Name = name,
                 MaxHealth = 200,
-                CurrentHealth = 200,
+                Health = 200,
                 Damage = 10
             };
         }

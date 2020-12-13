@@ -10,7 +10,8 @@ namespace InternshipDungeonCrawler.Data.Models.Player
         {
             MaxHealth *= 3;
         }
-        public override void Attack(Player Player, Monster Enemy)
+
+        public override void Attack()
         {
             var done = false;
             while (!done)
@@ -21,15 +22,15 @@ namespace InternshipDungeonCrawler.Data.Models.Player
                 var userInput = Console.ReadLine();
                 if (userInput == "1")
                 {
-                    base.Attack(Player, Enemy);
+                    base.Attack();
                     done = true;
                 }
                 else if (userInput == "2")
                 {
-                    Enemy.Health -= 2 * Player.Damage;
-                    Console.WriteLine("You attacked the " + Enemy.Name + " and caused " + 2 * Player.Damage + " damage points");
-                    Console.WriteLine("You were damaged for " + (int)(Player.MaxHealth * 0.15) + " Health points");
-                    Player.CurrentHealth -= (int)(Player.MaxHealth * 0.15);
+                    DataStore.Enemy.Health -= 2 * DataStore.Player.Damage;
+                    Console.WriteLine("You attacked the " + DataStore.Enemy.Name + " and caused " + 2 * DataStore.Player.Damage + " damage points");
+                    Console.WriteLine("You were damaged for " + (int)(DataStore.Player.MaxHealth * 0.15) + " Health points");
+                    DataStore.Player.Health -= (int)(DataStore.Player.MaxHealth * 0.15);
                     done = true;
                 }
                 else

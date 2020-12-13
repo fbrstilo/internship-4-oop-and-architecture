@@ -7,34 +7,41 @@ namespace InternshipDungeonCrawler.Data.Models.Player
     {
         public string Name { get; set; }
         public int MaxHealth { get; set; } = 50;
-        public int CurrentHealth { get; set; } = 50;
+        public int Health { get; set; } = 50;
         public int ExperiencePoints { get; set; } = 0;
         public int CurrentLevel { get; set; } = 1;
         public int Damage { get; set; } = 10;
 
-        public void HealthRegen(Player Player)
+
+        virtual public void NextLevel()
         {
-            if (Player.CurrentHealth < Player.MaxHealth && (Player.MaxHealth - Player.CurrentHealth)<(int)(Player.MaxHealth * 0.25))
+            DataStore.Player.MaxHealth *= 2;
+            DataStore.Player.Health = DataStore.Player.MaxHealth;
+            DataStore.Player.Damage *= 2;
+        }
+        public static void Regen()
+        {
+            if (DataStore.Player.Health < DataStore.Player.MaxHealth && (DataStore.Player.MaxHealth - DataStore.Player.Health)<(int)(DataStore.Player.MaxHealth * 0.25))
             {
-                Console.WriteLine("You have healed for " + (int)(Player.MaxHealth * 0.25) + " health points.\n");
-                Player.CurrentHealth += (int)(Player.MaxHealth * 0.25);
-                Console.WriteLine("Current HP: " + Player.CurrentHealth);
+                Console.WriteLine("You have healed for " + (int)(DataStore.Player.MaxHealth * 0.25) + " health points.\n");
+                DataStore.Player.Health += (int)(DataStore.Player.MaxHealth * 0.25);
+                Console.WriteLine("Current HP: " + DataStore.Player.Health);
             }
         }
-        public void ExperienceHeal(Player Player)
+        public static void ExperienceHeal()
         {
-            Player.ExperiencePoints = (int)0.5 * Player.ExperiencePoints;
-            Player.CurrentHealth = Player.MaxHealth;
+            DataStore.Player.ExperiencePoints = (int)0.5 * DataStore.Player.ExperiencePoints;
+            DataStore.Player.Health = DataStore.Player.MaxHealth;
             Console.WriteLine("You are now at full health.");
         }
-        virtual public void Attack(Player Player, Monster Enemy)
+        virtual public void Attack()
         {
-            Enemy.Health -= Player.Damage;
-            Console.WriteLine("You attacked the " + Enemy.Name + " and caused " + Player.Damage + " damage points");
+            DataStore.Enemy.Health -= DataStore.Player.Damage;
+            Console.WriteLine("You attacked the " + DataStore.Enemy.Name + " and caused " + DataStore.Player.Damage + " damage points");
         }
         public override string ToString()
         {
-            return $"{Name}\nHP:{CurrentHealth}/{MaxHealth} {Visuals.ProgressBar(CurrentHealth, MaxHealth)}\nXP:{ExperiencePoints}/{10*CurrentLevel} {Visuals.ProgressBar(ExperiencePoints, 10*CurrentLevel)}";
+            return $"{Name}\nHP:{Health}/{MaxHealth} {Visuals.ProgressBar(Health, MaxHealth)}\nXP:{ExperiencePoints}/{10*CurrentLevel} {Visuals.ProgressBar(ExperiencePoints, 10*CurrentLevel)}";
         }
     }
 }

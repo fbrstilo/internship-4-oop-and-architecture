@@ -1,18 +1,31 @@
 ﻿using InternshipDungeonCrawler.Data;
+using InternshipDungeonCrawler.Data.Models;
+using InternshipDungeonCrawler.Data.Models.Player;
+using System;
 
 namespace InternshipDungeonCrawler.Domain
 {
-    public class Leveling
+    public static class Leveling
     {
-        public int LevelProgress(int gainedxp)
+        public static void NextLevel()
         {
-            var levelupThreshold = 10 * DataStore.Player.CurrentLevel;
-            while(DataStore.Player.ExperiencePoints + gainedxp >= levelupThreshold)
+            DataStore.Player.ExperiencePoints += DataStore.Enemy.XpWorth;
+            while (DataStore.Player.ExperiencePoints >= 10 * DataStore.Player.CurrentLevel)
             {
-                DataStore.Player.CurrentLevel += 1;
-                DataStore.Player.ExperiencePoints -= levelupThreshold;
+                DataStore.Player.ExperiencePoints -= 10 * DataStore.Player.CurrentLevel;
+                DataStore.Player.CurrentLevel++;
+                DataStore.Player.NextLevel();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("You have leveled up!");
+                Console.ResetColor();
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
-            return levelupThreshold - DataStore.Player.ExperiencePoints;
+            Console.WriteLine("XP:" +  DataStore.Player.ExperiencePoints +"/" +  10 * DataStore.Player.CurrentLevel + 
+             Visuals.ProgressBar(DataStore.Player.ExperiencePoints, 10 * DataStore.Player.CurrentLevel));
+
+            Console.WriteLine("Press any key to continue.");
+            Console.ReadKey();
         }
     }
 }

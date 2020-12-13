@@ -16,7 +16,7 @@ namespace InternshipDungeonCrawler.Data.Models.Monsters
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("The monster used basic attack. You lost " + DamagePerAttack + " health.");
             Console.ResetColor();
-            DataStore.Player.CurrentHealth -= DamagePerAttack;
+            DataStore.Player.Health -= DamagePerAttack;
         }
         public override string ToString()
         {
