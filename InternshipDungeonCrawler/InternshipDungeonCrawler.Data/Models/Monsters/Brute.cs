@@ -6,10 +6,12 @@ namespace InternshipDungeonCrawler.Data.Models.Monsters
     {
         public Brute()
         {
-            Health = Health * 2;
-            DamagePerAttack = DamagePerAttack * 2;
-            XpWorth = XpWorth * 2;
+            Health *= 2;
+            DamagePerAttack *= 2;
+            XpWorth *=2;
+            Name = "brute";
         }
+
         public override void Attack(int attackRnd)
         {
             if (attackRnd < 6)

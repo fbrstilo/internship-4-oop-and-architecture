@@ -1,4 +1,5 @@
 ﻿using InternshipDungeonCrawler.Data;
+using InternshipDungeonCrawler.Data.Models.Monsters;
 
 namespace InternshipDungeonCrawler.Domain
 {
@@ -26,15 +27,16 @@ namespace InternshipDungeonCrawler.Domain
         }
         public static void Goblin()
         {
-
+            DataStore.Enemy = new Goblin { };
+            
         }
         public static void Brute()
         {
-
+            DataStore.Enemy = new Brute { };
         }
         public static void Witch()
         {
-
+            DataStore.Enemy = new Witch { };
         }
     }
 }

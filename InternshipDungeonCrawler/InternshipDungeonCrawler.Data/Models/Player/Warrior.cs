@@ -5,7 +5,7 @@ namespace InternshipDungeonCrawler.Data.Models.Player
     {
         public Warrior()
         {
-            MaxHealth = MaxHealth * 3;
+            MaxHealth *= 3;
         }
     }
 }

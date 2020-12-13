@@ -6,8 +6,10 @@ namespace InternshipDungeonCrawler.Data.Models.Monsters
     {
         public Witch()
         {
-            XpWorth = XpWorth * 2;
+            XpWorth *= 2;
+            Name = "witch";
         }
+        
         public override void Attack(int attackRnd)
         {
             if (attackRnd < 80)

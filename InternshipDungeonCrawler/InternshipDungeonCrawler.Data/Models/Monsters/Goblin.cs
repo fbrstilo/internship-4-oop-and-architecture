@@ -5,7 +5,7 @@ namespace InternshipDungeonCrawler.Data.Models.Monsters
     {
         public Goblin()
         {
-
+            Name = "goblin";
         }
     }
 }
