@@ -32,5 +32,9 @@ namespace InternshipDungeonCrawler.Data.Models.Player
             Enemy.Health -= Player.Damage;
             Console.WriteLine("You attacked the " + Enemy.Name + " and caused " + Player.Damage + " damage points");
         }
+        public override string ToString()
+        {
+            return $"{Name}\nHP:{CurrentHealth}/{MaxHealth} {Visuals.ProgressBar(CurrentHealth, MaxHealth)}\nXP:{ExperiencePoints}/{10*CurrentLevel} {Visuals.ProgressBar(ExperiencePoints, 10*CurrentLevel)}";
+        }
     }
 }

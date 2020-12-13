@@ -24,7 +24,7 @@ namespace InternshipDungeonCrawler.Data.Models.Player
                 var done = false;
                 while (!done)
                 {
-                    Console.WriteLine("Would you like to attack the enemy or regenerate mana?" +
+                    Console.WriteLine("Select your move:" +
                         "\n\t1 - Attack" +
                         "\n\t2 - Regenerate mana");
                     var userInput = Console.ReadLine();
@@ -42,7 +42,6 @@ namespace InternshipDungeonCrawler.Data.Models.Player
                     else
                     {
                         Console.Clear();
-                        /*stavit ispis statsa*/
                         Console.WriteLine("Invalid input. Please try again");
                     }
                 }
@@ -57,6 +56,10 @@ namespace InternshipDungeonCrawler.Data.Models.Player
         {
             Player.CurrentMana++;
             Console.WriteLine("You have regenerated 1 mana.");
+        }
+        public override string ToString()
+        {
+            return $"{ base.ToString()}\nMANA: {CurrentMana}/{MaxMana} {Visuals.ProgressBar(CurrentMana, MaxMana)}";
         }
     }
 }

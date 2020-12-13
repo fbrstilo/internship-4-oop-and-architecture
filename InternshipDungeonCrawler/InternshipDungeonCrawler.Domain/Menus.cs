@@ -1,5 +1,6 @@
 ﻿using InternshipDungeonCrawler.Data;
 using System;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace InternshipDungeonCrawler.Domain
 {
@@ -16,7 +17,7 @@ namespace InternshipDungeonCrawler.Domain
             }
             var typeChosen = false;
             var settingsChosen = false;
-            while (!typeChosen || !settingsChosen)
+            while (!typeChosen)
             {
                 Console.WriteLine("Welcome, " + heroName +
                     "\nChoose your hero type:\t\t(0 to quit)\n" +
@@ -56,7 +57,10 @@ namespace InternshipDungeonCrawler.Domain
                         Console.WriteLine("Invalid input. Please enter 0, 1, 2, or 3.\n");
                         break;
                 }
-                Console.WriteLine("Would you like to set your own health or resume with the default option?\t\t(default = " + DataStore.Player.MaxHealth + ")" +
+            }
+            while (!settingsChosen)
+            {
+                Console.WriteLine("Would you like to set your own health or resume with the default option?\t\t(default = " + DataStore.Player.MaxHealth + ")" +                     
                     "\n1 - default" +
                     "\n2 - custom");
                 switch (Console.ReadLine())
@@ -74,6 +78,7 @@ namespace InternshipDungeonCrawler.Domain
                                 DataStore.Player.MaxHealth = health;
                                 DataStore.Player.CurrentHealth = health;
                                 settingsChosen = true;
+                                Console.WriteLine("Your maximum health value has been changed to " + DataStore.Player.MaxHealth);
                             }
                             else
                             {
@@ -82,8 +87,13 @@ namespace InternshipDungeonCrawler.Domain
                             }
                         }
                         break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Invalid input. Please try again.");
+                        break;
                 }
             }
+            
             while (true)
             {
                 if (DataStore.EncounterCount < 10)
@@ -111,6 +121,25 @@ namespace InternshipDungeonCrawler.Domain
             if (playAgain == "0")
             {
                 return;
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
+        }
+
+        private static void DeathScreen()
+        {
+            Console.WriteLine("A brave hero named " + DataStore.Player.Name +  "died today on his conquest to save the world, or something." +
+                "\nHis body has perished, but his memory will remain." +
+                "\n\nWould you like to try again?\n" +
+                "type 1 to play again\n" +
+                "type any other key to quit");
+            var userinput = Console.ReadLine();
+            if (userinput == "1")
+            {
+                Console.Clear();
+                StartScreen();
             }
             else
             {
