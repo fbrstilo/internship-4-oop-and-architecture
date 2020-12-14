@@ -21,7 +21,7 @@ namespace InternshipDungeonCrawler.Data.Models.Monsters
                 var rnd = new Random();
                 DataStore.ConfuseUsed = true;
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("The monster used CONFUSE. Everyone's health is now random");
+                Console.WriteLine("The witch used CONFUSE. Everyone's health is now random");
                 Console.ResetColor();
                 DataStore.Player.Health = (DataStore.Player.Health * rnd.Next(1, 100)) / 100;
                 DataStore.Enemy.Health = (DataStore.Enemy.Health * rnd.Next(1, 100)) / 100;

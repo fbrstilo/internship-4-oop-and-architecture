@@ -9,7 +9,7 @@ namespace InternshipDungeonCrawler.Data.Models
         public static string ProgressBar(int value, int maxValue)
         {
             int i;
-            var barLength = (int)((value / maxValue) * 10);
+            var barLength = (10*value)/maxValue;
             var returnString = "";
             returnString += "[";
             for (i = 0; i < barLength; i++)

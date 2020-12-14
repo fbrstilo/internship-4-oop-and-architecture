@@ -1,6 +1,5 @@
 ﻿using InternshipDungeonCrawler.Data;
 using System;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace InternshipDungeonCrawler.Domain
 {
@@ -127,7 +126,7 @@ namespace InternshipDungeonCrawler.Domain
 
         public static void DeathScreen()
         {
-            Console.WriteLine("A brave hero named " + DataStore.Player.Name +  "died today on his conquest to save the world, or something." +
+            Console.WriteLine("A brave hero named " + DataStore.Player.Name +  " died today on his conquest to save the world, or something." +
                 "\nHis body has perished, but his memory will remain." +
                 "\n\nWould you like to try again?\n" +
                 "type 1 to play again\n" +
@@ -136,6 +135,7 @@ namespace InternshipDungeonCrawler.Domain
             if (userinput == "1")
             {
                 Console.Clear();
+                DataStore.EncounterCount = 1;
                 StartScreen();
             }
             else

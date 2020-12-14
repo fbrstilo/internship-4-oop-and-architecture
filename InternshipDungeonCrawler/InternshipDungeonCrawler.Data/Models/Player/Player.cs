@@ -6,8 +6,8 @@ namespace InternshipDungeonCrawler.Data.Models.Player
     public class Player
     {
         public string Name { get; set; }
-        public int MaxHealth { get; set; } = 50;
-        public int Health { get; set; } = 50;
+        public int MaxHealth { get; set; }
+        public int Health { get; set; }
         public int ExperiencePoints { get; set; } = 0;
         public int CurrentLevel { get; set; } = 1;
         public int Damage { get; set; } = 10;
@@ -15,17 +15,20 @@ namespace InternshipDungeonCrawler.Data.Models.Player
 
         virtual public void NextLevel()
         {
-            DataStore.Player.MaxHealth *= 2;
-            DataStore.Player.Health = DataStore.Player.MaxHealth;
-            DataStore.Player.Damage *= 2;
+            DataStore.Player.MaxHealth += 10;
+            DataStore.Player.Damage += 10;
         }
         public static void Regen()
         {
-            if (DataStore.Player.Health < DataStore.Player.MaxHealth && (DataStore.Player.MaxHealth - DataStore.Player.Health)<(int)(DataStore.Player.MaxHealth * 0.25))
+            if (DataStore.Player.Health < DataStore.Player.MaxHealth)
             {
                 Console.WriteLine("You have healed for " + (int)(DataStore.Player.MaxHealth * 0.25) + " health points.\n");
-                DataStore.Player.Health += (int)(DataStore.Player.MaxHealth * 0.25);
+                DataStore.Player.Health += (DataStore.Player.MaxHealth / 4);
                 Console.WriteLine("Current HP: " + DataStore.Player.Health);
+            }
+            if (DataStore.Player.Health > DataStore.Player.MaxHealth)
+            {
+                DataStore.Player.Health = DataStore.Player.MaxHealth;
             }
         }
         public static void ExperienceHeal()

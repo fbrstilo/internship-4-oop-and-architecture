@@ -10,8 +10,8 @@ namespace InternshipDungeonCrawler.Domain
             DataStore.Player = new Warrior
             {
                 Name = name,
-                MaxHealth = 200,
-                Health = 200,
+                MaxHealth = 75,
+                Health = 75,
                 Damage = 10
             };
             
@@ -21,9 +21,9 @@ namespace InternshipDungeonCrawler.Domain
             DataStore.Player = new Mage
             {
                 Name = name,
-                MaxHealth = 200,
-                Health = 200,
-                Damage = 10
+                MaxHealth = 35,
+                Health = 35,
+                Damage = 20
             };
         }
         public static void Ranger(string name)
@@ -31,9 +31,9 @@ namespace InternshipDungeonCrawler.Domain
             DataStore.Player = new Ranger
             {
                 Name = name,
-                MaxHealth = 200,
-                Health = 200,
-                Damage = 10
+                MaxHealth = 50,
+                Health = 50,
+                Damage = 15
             };
         }
     }

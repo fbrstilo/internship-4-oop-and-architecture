@@ -7,6 +7,7 @@ namespace InternshipDungeonCrawler.Data.Models.Monsters
         public Brute()
         {
             Health *= 2;
+            MaxHealth *= 2;
             DamagePerAttack *= 2;
             XpWorth *=2;
             Name = "brute";

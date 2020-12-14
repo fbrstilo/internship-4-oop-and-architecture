@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using InternshipDungeonCrawler.Data;
 using InternshipDungeonCrawler.Data.Models.Monsters;
 using InternshipDungeonCrawler.Data.Models.Player;
@@ -21,8 +19,6 @@ namespace InternshipDungeonCrawler.Domain
                 while(DataStore.Player.Health>0 && DataStore.Enemy.Health > 0)
                 {
                     RockPaperScissorsCombat();
-                    DataStore.Player.ToString();
-                    DataStore.Enemy.ToString();
                 }
                 if (DataStore.Player.Health <= 0)
                 {
@@ -46,6 +42,7 @@ namespace InternshipDungeonCrawler.Domain
                         if (userInput == "1")
                         {
                             DataStore.Player.ExperiencePoints = (int)(0.5 * DataStore.Player.ExperiencePoints);
+                            DataStore.Player.Health = DataStore.Player.MaxHealth;
                         }
                     }
                 }
@@ -62,6 +59,8 @@ namespace InternshipDungeonCrawler.Domain
         private static void RockPaperScissorsCombat()
         {
             var MonsterCombatChoice = (RockPaperScissorsEnum)Randomiser.AttackRnd();
+            Console.WriteLine(DataStore.Enemy.ToString());
+            Console.WriteLine("\n" + DataStore.Player.ToString());
             Console.WriteLine("Choose your attack:");
             for(int i = 0; i < 3; i++)
             {
